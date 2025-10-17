@@ -49,7 +49,7 @@ export const sidebarItems: NavGroup[] = [
     label: "Dashboards",
     items: [
       {
-        title: "Default",
+        title: "Ana Sayfa",
         url: "/dashboard/default",
         icon: LayoutDashboard,
       },
@@ -59,7 +59,7 @@ export const sidebarItems: NavGroup[] = [
         icon: ChartBar,
       },
       {
-        title: "Finance",
+        title: "Finans",
         url: "/dashboard/finance",
         icon: Banknote,
       },
