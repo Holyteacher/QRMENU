@@ -1,161 +1,80 @@
 import {
-  ShoppingBag,
-  Forklift,
-  Mail,
-  MessageSquare,
-  Calendar,
-  Kanban,
-  ReceiptText,
+  LayoutDashboard,
   Users,
+  BookMarked,
+  SquareKanban,
+  Box,
+  Settings,
   Lock,
   Fingerprint,
-  SquareArrowUpRight,
-  LayoutDashboard,
-  ChartBar,
-  Banknote,
-  Gauge,
-  GraduationCap,
-  type LucideIcon,
-} from "lucide-react";
-
-export interface NavSubItem {
-  title: string;
-  url: string;
-  icon?: LucideIcon;
-  comingSoon?: boolean;
-  newTab?: boolean;
-  isNew?: boolean;
-}
-
-export interface NavMainItem {
-  title: string;
-  url: string;
-  icon?: LucideIcon;
-  subItems?: NavSubItem[];
-  comingSoon?: boolean;
-  newTab?: boolean;
-  isNew?: boolean;
-}
-
-export interface NavGroup {
-  id: number;
-  label?: string;
-  items: NavMainItem[];
-}
+} from 'lucide-react';
+import type { NavGroup } from '@/types/navigation/sidebar-items'; // Bu satırın orijinalini koruyun.
 
 export const sidebarItems: NavGroup[] = [
   {
     id: 1,
-    label: "Dashboards",
+    label: 'Restoran Yönetimi',
     items: [
       {
-        title: "Ana Sayfa",
-        url: "/dashboard/default",
+        title: 'Ana Panel',
+        url: '/dashboard/default',
         icon: LayoutDashboard,
       },
       {
-        title: "CRM",
-        url: "/dashboard/crm",
-        icon: ChartBar,
-      },
-      {
-        title: "Finans",
-        url: "/dashboard/finance",
-        icon: Banknote,
-      },
-      {
-        title: "Analytics",
-        url: "/dashboard/coming-soon",
-        icon: Gauge,
+        title: 'Siparişler',
+        url: '/dashboard/orders',
+        icon: SquareKanban,
         comingSoon: true,
       },
       {
-        title: "E-commerce",
-        url: "/dashboard/coming-soon",
-        icon: ShoppingBag,
+        title: 'Menü Yönetimi',
+        url: '/dashboard/menu',
+        icon: BookMarked,
         comingSoon: true,
       },
       {
-        title: "Academy",
-        url: "/dashboard/coming-soon",
-        icon: GraduationCap,
+        title: 'Masa Yönetimi',
+        url: '/dashboard/tables',
+        icon: Box,
         comingSoon: true,
       },
       {
-        title: "Logistics",
-        url: "/dashboard/coming-soon",
-        icon: Forklift,
+        title: 'Garsonlar',
+        url: '/dashboard/waiters',
+        icon: Users,
         comingSoon: true,
       },
     ],
   },
   {
     id: 2,
-    label: "Pages",
+    label: 'Hesap',
     items: [
       {
-        title: "Email",
-        url: "/dashboard/coming-soon",
-        icon: Mail,
+        title: 'Ayarlar',
+        url: '/dashboard/settings',
+        icon: Settings,
         comingSoon: true,
       },
       {
-        title: "Chat",
-        url: "/dashboard/coming-soon",
-        icon: MessageSquare,
-        comingSoon: true,
-      },
-      {
-        title: "Calendar",
-        url: "/dashboard/coming-soon",
-        icon: Calendar,
-        comingSoon: true,
-      },
-      {
-        title: "Kanban",
-        url: "/dashboard/coming-soon",
-        icon: Kanban,
-        comingSoon: true,
-      },
-      {
-        title: "Invoice",
-        url: "/dashboard/coming-soon",
-        icon: ReceiptText,
-        comingSoon: true,
-      },
-      {
-        title: "Users",
-        url: "/dashboard/coming-soon",
-        icon: Users,
-        comingSoon: true,
-      },
-      {
-        title: "Roles",
-        url: "/dashboard/coming-soon",
-        icon: Lock,
-        comingSoon: true,
-      },
-      {
-        title: "Authentication",
-        url: "/auth",
+        title: 'Giriş Sayfaları',
+        url: '/auth',
         icon: Fingerprint,
         subItems: [
-          { title: "Login v1", url: "/auth/v1/login", newTab: true },
-          { title: "Login v2", url: "/auth/v2/login", newTab: true },
-          { title: "Register v1", url: "/auth/v1/register", newTab: true },
-          { title: "Register v2", url: "/auth/v2/register", newTab: true },
+          { title: 'Giriş v1', url: '/auth/v1/login', newTab: true },
+          { title: 'Giriş v2', url: '/auth/v2/login', newTab: true },
         ],
       },
     ],
   },
   {
     id: 3,
-    label: "Misc",
+    label: 'Süper Admin',
     items: [
       {
-        title: "Others",
-        url: "/dashboard/coming-soon",
-        icon: SquareArrowUpRight,
+        title: 'Restoranlar',
+        url: '/dashboard/super/restaurants',
+        icon: Lock,
         comingSoon: true,
       },
     ],
