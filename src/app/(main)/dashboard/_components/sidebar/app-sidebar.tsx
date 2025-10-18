@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Command, ChevronsLeft, ChevronsRight } from "lucide-react"; // Chevrons ikonlarını ekledik
+import { Command, ChevronsLeft, ChevronsRight } from "lucide-react";
 
 import {
   Sidebar,
@@ -11,7 +11,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar, // Sidebar durumunu kontrol etmek için hook'u ekledik
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { APP_CONFIG } from "@/config/app-config";
 import { rootUser } from "@/data/users";
@@ -21,7 +21,7 @@ import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { toggleSidebar, state } = useSidebar(); // Hook'u burada kullanıyoruz
+  const { toggleSidebar, state } = useSidebar();
 
   return (
     <Sidebar {...props}>
@@ -41,7 +41,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={sidebarItems} />
       </SidebarContent>
       <SidebarFooter>
-        {/* --- YENİ EKLENEN BUTON --- */}
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton onClick={toggleSidebar}>
@@ -50,7 +49,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
-        {/* --- YENİ BUTON BİTİŞ --- */}
         <NavUser user={rootUser} />
       </SidebarFooter>
     </Sidebar>
