@@ -1,56 +1,107 @@
-"use client";
-
-import Link from "next/link";
-import { Command, ChevronsLeft, ChevronsRight } from "lucide-react";
-
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar,
-} from "@/components/ui/sidebar";
-import { APP_CONFIG } from "@/config/app-config";
-import { rootUser } from "@/data/users";
-import { sidebarItems } from "@/navigation/sidebar/sidebar-items";
+  LayoutDashboard,
+  Users,
+  BookMarked,
+  SquareKanban,
+  Box,
+  Settings,
+  Lock,
+  Fingerprint,
+  type LucideIcon,
+} from 'lucide-react';
 
-import { NavMain } from "./nav-main";
-import { NavUser } from "./nav-user";
-
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { toggleSidebar, state } = useSidebar();
-
-  return (
-    <Sidebar {...props}>
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
-              <Link href="/dashboard/default">
-                <Command />
-                <span className="text-base font-semibold">{APP_CONFIG.name}</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={sidebarItems} />
-      </SidebarContent>
-      <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton onClick={toggleSidebar}>
-              {state === "expanded" ? <ChevronsLeft /> : <ChevronsRight />}
-              <span>Collapse</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-        <NavUser user={rootUser} />
-      </SidebarFooter>
-    </Sidebar>
-  );
+export interface NavSubItem {
+  title: string;
+  url: string;
+  icon?: LucideIcon;
+  comingSoon?: boolean;
+  newTab?: boolean;
+  isNew?: boolean;
 }
+
+export interface NavMainItem {
+  title: string;
+  url: string;
+  icon?: LucideIcon;
+  subItems?: NavSubItem[];
+  comingSoon?: boolean;
+  newTab?: boolean;
+  isNew?: boolean;
+}
+
+export interface NavGroup {
+  id: number;
+  label?: string;
+  items: NavMainItem[];
+}
+
+export const sidebarItems: NavGroup[] = [
+  {
+    id: 1,
+    label: 'Restoran Yönetimi',
+    items: [
+      {
+        title: 'Ana Panel',
+        url: '/dashboard/default',
+        icon: LayoutDashboard,
+      },
+      {
+        title: 'Siparişler',
+        url: '/dashboard/orders',
+        icon: SquareKanban,
+        comingSoon: true,
+      },
+      {
+        title: 'Menü Yönetimi',
+        url: '/dashboard/menu',
+        icon: BookMarked,
+        comingSoon: true,
+      },
+      {
+        title: 'Masa Yönetimi',
+        url: '/dashboard/tables',
+        icon: Box,
+        comingSoon: true,
+      },
+      {
+        title: 'Garsonlar',
+        url: '/dashboard/waiters',
+        icon: Users,
+        comingSoon: true,
+      },
+    ],
+  },
+  {
+    id: 2,
+    label: 'Hesap',
+    items: [
+      {
+        title: 'Ayarlar',
+        url: '/dashboard/settings',
+        icon: Settings,
+        comingSoon: true,
+      },
+      {
+        title: 'Giriş Sayfaları',
+        url: '/auth',
+        icon: Fingerprint,
+        subItems: [
+          { title: 'Giriş v1', url: '/auth/v1/login', newTab: true },
+          { title: 'Giriş v2', url: '/auth/v2/login', newTab: true },
+        ],
+      },
+    ],
+  },
+  {
+    id: 3,
+    label: 'Süper Admin',
+    items: [
+      {
+        title: 'Restoranlar',
+        url: '/dashboard/super/restaurants',
+        icon: Lock,
+        comingSoon: true,
+      },
+    ],
+  },
+];
