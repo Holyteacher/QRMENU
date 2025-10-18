@@ -7,9 +7,36 @@ import {
   Settings,
   Lock,
   Fingerprint,
+  type LucideIcon,
 } from 'lucide-react';
-import type { NavGroup } from '@/types/navigation/sidebar-items'; // Bu satırın orijinalini koruyun.
 
+// Hatanın çözümü: Bu arayüzlerin (interface) başına "export" kelimesi eklendi.
+export interface NavSubItem {
+  title: string;
+  url: string;
+  icon?: LucideIcon;
+  comingSoon?: boolean;
+  newTab?: boolean;
+  isNew?: boolean;
+}
+
+export interface NavMainItem {
+  title: string;
+  url: string;
+  icon?: LucideIcon;
+  subItems?: NavSubItem[];
+  comingSoon?: boolean;
+  newTab?: boolean;
+  isNew?: boolean;
+}
+
+export interface NavGroup {
+  id: number;
+  label?: string;
+  items: NavMainItem[];
+}
+
+// Projemize göre özelleştirilmiş yeni menü yapısı
 export const sidebarItems: NavGroup[] = [
   {
     id: 1,
